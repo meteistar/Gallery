@@ -5,6 +5,7 @@
 
 #include "albumdao.h"
 
+class QSqlQuery;
 class QSqlDatabase;
 
 const QString DATABASE_FILENAME = "gallery.db";
@@ -12,6 +13,7 @@ const QString DATABASE_FILENAME = "gallery.db";
 class DatabaseManager
 {
 public:
+    static void debugQuery(const QSqlQuery& query);
     static DatabaseManager &instance();
     ~DatabaseManager();
 
