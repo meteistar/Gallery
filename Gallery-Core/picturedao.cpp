@@ -6,6 +6,7 @@
 #include <QVariant>
 
 #include "DatabaseManager.h"
+#include "picture.h"
 
 PictureDao::PictureDao(QSqlDatabase& database) :
     mDatabase(database)
