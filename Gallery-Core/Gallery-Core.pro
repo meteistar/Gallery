@@ -13,11 +13,13 @@ CONFIG += c++17
 
 SOURCES += \
     album.cpp \
+    databasemanager.cpp \
     picture.cpp
 
 HEADERS += \
     Gallery-Core_global.h \
     album.h \
+    databasemanager.h \
     picture.h
 
 # Default rules for deployment.
