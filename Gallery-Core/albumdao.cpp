@@ -9,6 +9,8 @@
 #include "databasemanager.h"
 #include "album.h"
 
+using namespace std;
+
 AlbumDao::AlbumDao(QSqlDatabase& database) :
     mDatabase(database)
 {
@@ -48,13 +50,12 @@ std::unique_ptr<std::vector<std::unique_ptr<Album> > > AlbumDao::albums() const
 {
     QSqlQuery query("SELECT * FROM albums", mDatabase);
     query.exec();
-    unique_ptr<vector<unique_ptr<Album>>> list(new vector<unique_ptr<Album>>
-    ());
+    unique_ptr<vector<unique_ptr<Album>>> list(new vector<unique_ptr<Album>>());
     while(query.next()) {
-    unique_ptr<Album> album(new Album());
-    album->setId(query.value("id").toInt());
-    album->setName(query.value("name").toString());
-    list->push_back(move(album));
+        unique_ptr<Album> album(new Album());
+        album->setId(query.value("id").toInt());
+        album->setName(query.value("name").toString());
+        list->push_back(move(album));
     }
     return list;
 }
