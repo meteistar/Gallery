@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QStringList>
 #include <QVariant>
+#include <memory>
 
 #include "databasemanager.h"
 #include "album.h"
@@ -43,16 +44,31 @@ void AlbumDao::removeAlbum(int id) const
 
 }
 
-QVector<Album *> AlbumDao::albums() const
+std::unique_ptr<std::vector<std::unique_ptr<Album> > > AlbumDao::albums() const
 {
     QSqlQuery query("SELECT * FROM albums", mDatabase);
     query.exec();
-    QVector<Album*> list;
+    unique_ptr<vector<unique_ptr<Album>>> list(new vector<unique_ptr<Album>>
+    ());
     while(query.next()) {
-        Album* album = new Album();
-        album->setId(query.value("id").toInt());
-        album->setName(query.value("name").toString());
-        list.append(album);
+    unique_ptr<Album> album(new Album());
+    album->setId(query.value("id").toInt());
+    album->setName(query.value("name").toString());
+    list->push_back(move(album));
     }
     return list;
 }
+
+//QVector<Album *> AlbumDao::albums() const
+//{
+//    QSqlQuery query("SELECT * FROM albums", mDatabase);
+//    query.exec();
+//    QVector<Album*> list;
+//    while(query.next()) {
+//        Album* album = new Album();
+//        album->setId(query.value("id").toInt());
+//        album->setName(query.value("name").toString());
+//        list.append(album);
+//    }
+//    return list;
+//}
