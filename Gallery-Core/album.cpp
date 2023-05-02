@@ -1,6 +1,8 @@
 #include "album.h"
 
-Album::Album()
+Album::Album(const QString &name):
+    mId(-1),
+    mName(name)
 {
 }
 
@@ -14,7 +16,7 @@ void Album::setId(int newId)
     mId = newId;
 }
 
-const QString &Album::name() const
+QString Album::name() const
 {
     return mName;
 }
