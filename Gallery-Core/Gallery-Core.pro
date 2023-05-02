@@ -15,14 +15,16 @@ SOURCES += \
     album.cpp \
     albumdao.cpp \
     databasemanager.cpp \
-    picture.cpp
+    picture.cpp \
+    picturedao.cpp
 
 HEADERS += \
     Gallery-Core_global.h \
     album.h \
     albumdao.h \
     databasemanager.h \
-    picture.h
+    picture.h \
+    picturedao.h
 
 # Default rules for deployment.
 unix {
