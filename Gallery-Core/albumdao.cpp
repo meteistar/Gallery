@@ -38,12 +38,21 @@ void AlbumDao::addAlbum(Album &album) const
 
 void AlbumDao::updateAlbum(const Album &album) const
 {
-
+    QSqlQuery query(mDatabase);
+    query.prepare("UPDATE albums SET name = (:name) WHERE id = (:id)");
+    query.bindValue(":name", album.name());
+    query.bindValue(":id", album.id());
+    query.exec();
+//    DatabaseManager::debugQuery(query);
 }
 
 void AlbumDao::removeAlbum(int id) const
 {
-
+    QSqlQuery query(mDatabase);
+    query.prepare("DELETE FROM albums WHERE id = (:id)");
+    query.bindValue(":id", id);
+    query.exec();
+//    DatabaseManager::debugQuery(query);
 }
 
 std::unique_ptr<std::vector<std::unique_ptr<Album> > > AlbumDao::albums() const
