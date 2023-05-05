@@ -1,11 +1,24 @@
 #include "albummodel.h"
 
+using namespace std;
+
 AlbumModel::AlbumModel(QObject* parent):
     QAbstractListModel(parent),
     mDb(DatabaseManager::instance()),
     mAlbums(mDb.albumDao.albums())
 {
 
+}
+
+QModelIndex AlbumModel::addAlbum(const Album &album)
+{
+    int rowIndex = rowCount();
+    beginInsertRows(QModelIndex(), rowIndex, rowIndex);
+    unique_ptr<Album> newAlbum(new Album(album));
+    mDb.albumDao.addAlbum(*newAlbum);
+    mAlbums->push_back(move(newAlbum));
+    endInsertRows();
+    return index(rowIndex, 0);
 }
 
 int AlbumModel::rowCount(const QModelIndex &parent) const
