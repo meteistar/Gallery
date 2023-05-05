@@ -12,3 +12,8 @@ AlbumListWidget::~AlbumListWidget()
 {
     delete ui;
 }
+
+void AlbumListWidget::setAlbumModel(AlbumModel *newAlbumModel)
+{
+    mAlbumModel = newAlbumModel;
+}
