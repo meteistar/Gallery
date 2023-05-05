@@ -8,6 +8,8 @@
 #include "DatabaseManager.h"
 #include "picture.h"
 
+using namespace std;
+
 PictureDao::PictureDao(QSqlDatabase& database) :
     mDatabase(database)
 {
@@ -42,4 +44,19 @@ void PictureDao::addPictureInAlbum(int albumId, Picture &picture) const
         DatabaseManager::debugQuery(query);
         picture.setId(query.lastInsertId().toInt());
         picture.setAlbumId(albumId);
+}
+
+void PictureDao::removePicture(int id) const
+{
+
+}
+
+void PictureDao::removePicturesForAlbum(int albumId) const
+{
+
+}
+
+std::unique_ptr<std::vector<std::unique_ptr<Picture> > > PictureDao::picturesForAlbum(int albumId) const
+{
+    return unique_ptr<vector<unique_ptr<Picture>>>();
 }

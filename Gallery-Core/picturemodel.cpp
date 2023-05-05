@@ -14,12 +14,42 @@ PictureModel::PictureModel(const AlbumModel& albumModel, QObject* parent)
             this, &PictureModel::deletePicturesForAlbum);
 }
 
+QModelIndex PictureModel::addPicture(const Picture &picture)
+{
+    return QModelIndex();
+}
+
+int PictureModel::rowCount(const QModelIndex &parent) const
+{
+    return mPictures->size();
+}
+
+QVariant PictureModel::data(const QModelIndex &index, int role) const
+{
+    return QVariant();
+}
+
+bool PictureModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    return false;
+}
+
 void PictureModel::setAlbumId(int albumId)
 {
     beginResetModel();
     mAlbumId = albumId;
     loadPictures(mAlbumId);
     endResetModel();
+}
+
+void PictureModel::clearAlbum()
+{
+
+}
+
+void PictureModel::deletePicturesForAlbum()
+{
+
 }
 
 void PictureModel::loadPictures(int albumId)
@@ -29,4 +59,9 @@ void PictureModel::loadPictures(int albumId)
         return;
     }
     mPictures = mDb.pictureDao.picturesForAlbum(albumId);
+}
+
+bool PictureModel::isIndexValid(const QModelIndex &index) const
+{
+    return false;
 }

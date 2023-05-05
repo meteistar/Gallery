@@ -82,5 +82,5 @@ QHash<int, QByteArray> AlbumModel::roleNames() const
 
 bool AlbumModel::isIndexValid(const QModelIndex &index) const
 {
-
+    return false;
 }
