@@ -29,3 +29,16 @@ QVariant AlbumModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 }
+
+QHash<int, QByteArray> AlbumModel::roleNames() const
+{
+    QHash<int, QByteArray> roles;
+    roles[Roles::IdRole] = "id";
+    roles[Roles::NameRole] = "name";
+    return roles;
+}
+
+bool AlbumModel::isIndexValid(const QModelIndex &index) const
+{
+
+}
