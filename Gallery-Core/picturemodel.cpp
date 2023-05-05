@@ -21,3 +21,12 @@ void PictureModel::setAlbumId(int albumId)
     loadPictures(mAlbumId);
     endResetModel();
 }
+
+void PictureModel::loadPictures(int albumId)
+{
+    if (albumId <= 0) {
+        mPictures.reset(new vector<unique_ptr<Picture>>());
+        return;
+    }
+    mPictures = mDb.pictureDao.picturesForAlbum(albumId);
+}

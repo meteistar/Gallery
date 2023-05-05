@@ -4,6 +4,7 @@
 #include <QString>
 
 #include "albumdao.h"
+#include "picturedao.h"
 
 class QSqlQuery;
 class QSqlDatabase;
@@ -26,6 +27,7 @@ private:
 
 public:
     const AlbumDao albumDao;
+    const PictureDao pictureDao;
 };
 
 #endif // DATABASEMANAGER_H
