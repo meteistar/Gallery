@@ -12,3 +12,20 @@ int AlbumModel::rowCount(const QModelIndex &parent) const
 {
     return mAlbums->size();
 }
+
+QVariant AlbumModel::data(const QModelIndex &index, int role) const
+{
+    if (!isIndexValid(index)) {
+        return QVariant();
+    }
+    const Album& album = *mAlbums->at(index.row());
+    switch (role) {
+    case Roles::IdRole:
+        return album.id();
+    case Roles::NameRole:
+    case Qt::DisplayRole:
+        return album.name();
+    default:
+        return QVariant();
+    }
+}
