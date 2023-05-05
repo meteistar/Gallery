@@ -18,7 +18,7 @@ public:
     explicit AlbumListWidget(QWidget *parent = nullptr);
     ~AlbumListWidget();
 
-    void setAlbumModel(AlbumModel *newAlbumModel);
+    void setModel(AlbumModel *newAlbumModel);
     void setSelectionModel(QItemSelectionModel* selectionModel);
 
 private slots:
