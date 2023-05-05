@@ -43,6 +43,18 @@ QVariant AlbumModel::data(const QModelIndex &index, int role) const
     }
 }
 
+bool AlbumModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (!isIndexValid(index) || role != Roles::NameRole) {
+    return false;
+    }
+    Album& album = *mAlbums->at(index.row());
+    album.setName(value.toString());
+    mDb.albumDao.updateAlbum(album);
+    emit dataChanged(index, index);
+    return true;
+}
+
 QHash<int, QByteArray> AlbumModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
