@@ -11,5 +11,13 @@ PictureModel::PictureModel(const AlbumModel& albumModel, QObject* parent)
     , mPictures(new vector<unique_ptr<Picture>>())
 {
     connect(&albumModel, &AlbumModel::rowsRemoved,
-    this, &PictureModel::deletePicturesForAlbum);
+            this, &PictureModel::deletePicturesForAlbum);
+}
+
+void PictureModel::setAlbumId(int albumId)
+{
+    beginResetModel();
+    mAlbumId = albumId;
+    loadPictures(mAlbumId);
+    endResetModel();
 }
